@@ -70,7 +70,7 @@ public class JUnitParser extends AbstractParser {
       @Override
       public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException 
       {
-        if ("testcase".equalsIgnoreCase(qName)) {
+        if ("testsuite".equalsIgnoreCase(qName)) {
           if (status != 0) {
             report.addSample(currentSample);
           }
@@ -80,7 +80,7 @@ public class JUnitParser extends AbstractParser {
           String time = attributes.getValue("time");
           currentSample.setDuration(parseDuration(time));
           currentSample.setSuccessful(true);
-          currentSample.setUri(attributes.getValue("classname") + "." + attributes.getValue("name"));
+          currentSample.setUri(attributes.getValue("name"));
           currentSample.setErrorObtained(false);
         } else if ("failure".equalsIgnoreCase(qName) && status != 0) {
           currentSample.setErrorObtained(false);
