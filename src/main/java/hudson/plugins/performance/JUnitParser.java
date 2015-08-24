@@ -103,7 +103,8 @@ public class JUnitParser extends AbstractParser {
   static long parseDuration(final String time)
   {
     // don't want commas or else will break on parse.
-    final double duration = Double.parseDouble(time.replaceAll(",", "")); 
+    String timeInp = time.split(" ")[0];
+    final double duration = Double.parseDouble(timeInp.replaceAll(",", ""));
     return (long) (duration * 1000);
   }
 }
